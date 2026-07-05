@@ -1,0 +1,7 @@
+# Go
+/out
+*.test
+*.cover
+.env
+.env.local
+vendor/

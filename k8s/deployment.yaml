@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: musig-stream
+  labels:
+    app: musig-stream
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: musig-stream
+  template:
+    metadata:
+      labels:
+        app: musig-stream
+    spec:
+      containers:
+        - name: musig-stream
+          image: ghcr.io/zaentrum/musig-stream:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

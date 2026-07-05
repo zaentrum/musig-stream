@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: musig-stream
+  labels:
+    app: musig-stream
+    prometheus: platform
+spec:
+  selector:
+    matchLabels:
+      app: musig-stream
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
